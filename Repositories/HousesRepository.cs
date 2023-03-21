@@ -59,5 +59,23 @@ namespace gregsListCSharp.Repositories
             int rows = _db.Execute(sql, new { id });
             return rows == 1;
         }
+
+        internal int Update(House update)
+        {
+            string sql = @"
+            UPDATE houses
+            SET
+            bathrooms = @bathrooms,
+            bedrooms = @bedrooms,
+            levels = @levels,
+            price = @price,
+            imgUrl = @imgUrl,
+            description = @description,
+            year = @year
+            WHERE id = @id;
+            ";
+            int rows = _db.Execute(sql, update);
+            return rows;
+        }
     }
 }
