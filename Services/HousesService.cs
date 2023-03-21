@@ -32,6 +32,14 @@ namespace gregsListCSharp.Services
             return house;
         }
 
+        internal string Remove(int id)
+        {
+            House house = this.Find(id);
+            bool result = _repo.Remove(id);
+            if (!result) throw new Exception($"something bad happened when trying to delete {house.Price} {house.Levels} @ id {house.Id}");
+            return $"deleted {house.Price} {house.Levels}";
+        }
+
         // internal List<House> Find()
         // {
         //     throw new NotImplementedException();

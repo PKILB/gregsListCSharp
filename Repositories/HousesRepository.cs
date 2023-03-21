@@ -50,5 +50,14 @@ namespace gregsListCSharp.Repositories
             House house = _db.Query<House>(sql, new {id}).FirstOrDefault();
             return house;
         }
+
+        internal bool Remove(int id)
+        {
+            string sql = @"
+            DELETE FROM houses WHERE id = @id;
+            ";
+            int rows = _db.Execute(sql, new { id });
+            return rows == 1;
+        }
     }
 }
