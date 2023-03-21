@@ -18,3 +18,12 @@ CREATE TABLE IF NOT EXISTS houses(
   description TEXT
 )default charset utf8 COMMENT '';
 DROP table IF EXISTS houses;
+
+CREATE TABLE IF NOT EXISTS jobs(
+  id INT AUTO_INCREMENT PRIMARY Key,
+  wage INT NOT Null DEFAULT 100,
+  hours INT NOT NULL DEFAULT 40,
+  imgUrl VARCHAR(200),
+  description TEXT
+)default charset utf8 COMMENT '';
+DROP table IF EXISTS jobs;
