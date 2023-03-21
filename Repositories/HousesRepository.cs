@@ -14,6 +14,17 @@ namespace gregsListCSharp.Repositories
             _db = db;
         }
 
+        internal List<House> FindAll()
+        {
+            string sql = @"
+            SELECT
+            *
+            From houses;
+            ";
+            List<House> houses = _db.Query<House>(sql).ToList();
+            return houses;
+        }
+
         internal House Create(House houseData)
         {
             string sql = @"
@@ -26,6 +37,18 @@ namespace gregsListCSharp.Repositories
             int id = _db.ExecuteScalar<int>(sql, houseData);
             houseData.Id = id;
             return houseData;
+        }
+
+        internal House FindOne(int id)
+        {
+            string sql = @"
+            Select
+            *
+            From houses
+            WHERE id = @id;
+            ";
+            House house = _db.Query<House>(sql, new {id}).FirstOrDefault();
+            return house;
         }
     }
 }

@@ -16,6 +16,34 @@ namespace gregsListCSharp.Controllers
         {
             this.housesService = housesService;
         }
+        [HttpGet]
+        public ActionResult<List<House>> Find()
+        {
+            try
+            {
+                List<House> houses = housesService.Find();
+                return Ok(houses);
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<House> Find(int id)
+        {
+            try
+            {
+                House house = housesService.Find(id);
+                return Ok(house);
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpPost]
         public ActionResult<House> Create([FromBody] House houseData)
         {
